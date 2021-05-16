@@ -1,0 +1,26 @@
+name: Tes
+on: [push, pull_request]
+jobs:
+  build:
+    name: docker build
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 19
+      fail-fast: false
+      matrix:
+        go: [1.6, 1.7]
+        flag: [A, B, C, D, E]
+    timeout-minutes: 360
+    env:
+        NUM_JOBS: 19
+        JOB: ${{ matrix.go }}
+    steps:
+    - name: Set up Go ${{ matrix.go }}
+      uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go }}
+      id: go
+    - name: Setup
+      uses: actions/checkout@v2
+    - name: build
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
