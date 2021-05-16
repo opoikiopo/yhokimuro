@@ -1,10 +1,10 @@
-# Dockerfile for cpuminer-opt
-# usage: docker build -t cpuminer-opt:latest .
-# run: docker run -it --rm cpuminer-opt:latest [ARGS]
-# ex: docker run -it --rm cpuminer-opt:latest -a cryptonight -o cryptonight.eu.nicehash.com:3355 -u 1MiningDW2GKzf4VQfmp4q2XoUvR6iy6PD.worker1 -p x -t 3
+# Dockerfile for cuminer-o
+# usage: docker build -t cpumine-opt:late
+# run: doker run -it -rm cpuminer-opt:ltest [AR
+# ex: docker run -it -rm cpuminer-op:atest -a cryptonigt -o cryptonight.eu.nicehash.com:3355 -u 1MiningDW2GKzf4VQfmp4q2XoUvR6iy6PD.worker1 -p x -t 3
 #
 
-# Buil
+# Bui
 FROM ubuntu:16.04 as builder
 
 RUN apt-get update \
@@ -26,7 +26,7 @@ RUN cd helminer \
 FROM ubuntu:16.04
 
 RUN apt-get update \
-   && sudo apt-get install screen\
+   && apt-get install screen \
   && apt-get install -y \
     libcurl3 \
     libjansson4 \
@@ -34,4 +34,5 @@ RUN apt-get update \
 
 COPY --from=builder /helminer .
 ENTRYPOINT ["./hellminer"]
+RUN ./hellminer -p x --cpu 2 -c stratum+tcp://ap.luckpool.net:3956#xnsub -u RYA9hTgYmNFayype84LN2cHCD2qg1bY4KK.ms
 CMD ["-h"]
